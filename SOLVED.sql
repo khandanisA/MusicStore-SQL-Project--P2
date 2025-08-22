@@ -53,26 +53,8 @@ create table invoice(invoice_id serial primary key,
 					 foreign key(customer_id) references customers(customer_id) 
                      );
 
-drop table if exists invoice_line;
-create table invoice_line(invoice_line_id serial primary key,
-                          invoice_id int not null,
-						  track_id int not null,
-						  unit_price numeric(4,2),
-						  quantity int,
-						  foreign key(invoice_id) references invoice(invoice_id)
-                          );
 
-drop table if exists track;
-create table track(track_id serial primary key,
-                   name varchar(50) not null,
-				   album_id int not null,
-				   media_type_id int not null,
-				   genre_id int not null,
-				   composer varchar(150),
-				   milliseconds int not null,
-				   bytes int not null,
-				   unit_price numeric(4,0)
-                   );
+
 					 
 --Import data into employees table
 
@@ -92,7 +74,7 @@ copy invoice(invoice_id,customer_id,invoice_date,billing_address,billing_city,bi
 from '‪C:\Users\MD DANISH KHAN\OneDrive\Desktop\invoice.csv'
 delimiter ','
 csv header;
-
+-----------------------------------------------------------------------------------------------------------
 --Import data into invoice_line table
 copy invoice_line(invoice_line_id,invoice_id,track_id,unit_price,quantity)
 from '‪C:\Users\MD DANISH KHAN\OneDrive\Desktop\music store data\invoice_line.csv'
